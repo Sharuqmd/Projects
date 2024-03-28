@@ -1,3 +1,34 @@
+terraform {
+  required_version = ">= 0.12"
+  required_providers {
+     aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+  
+}
+provider "aws" {
+  region = "ap-south-1b"
+}
+resource "aws_instance" "jenkins_master" {
+  ami           = "ami-0c55b159cbfafe1f0"  
+  instance_type = "t2.micro"                
+  key_name      = "your-key-pair"           
+  tags = {
+    Name = "jenkins-master"
+  }
+}
+
+resource "aws_instance" "jenkins_slave" {
+  ami           = "ami-0c55b159cbfafe1f0"  
+  instance_type = "t2.micro"                
+  key_name      = "your-key-pair"           
+  tags = {
+    Name = "jenkins-slave"
+  }
+}
+
 
 #!/bin/bash
 
