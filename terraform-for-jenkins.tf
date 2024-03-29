@@ -57,3 +57,25 @@ resource "aws_instance" "jenkins_master" {
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
   EOF
 }
+resource "aws_instance" "jenkins_slave" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  key_name      = "teraform.key"
+
+  tags = {
+    Name = "jenkins-slave"
+  }
+  user_data = <<-EOF
+    #!/bin/bash
+
+    # Check if Java is installed
+    if ! command -v java &> /dev/null; then
+        echo "Java is not installed. Installing Java..."
+        sudo apt update
+        sudo apt install -y openjdk-17-jre
+        echo "Java installed successfully."
+    else
+        echo "Java is already installed."
+    fi
+  EOF
+}
