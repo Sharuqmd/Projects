@@ -4,7 +4,7 @@
 
 Set up Git repository: Create a Git repository (e.g., GitHub, GitLab) to host your application code. Developers will push their code changes to this repository.
 
-Set up Jenkins server: Install and configure Jenkins on a server or cloud instance. You'll need to install necessary plugins for Maven, SonarQube, Docker, and other integrations.
+Set up Jenkinsg server: Install and configure Jenkins on a server or cloud instance. You'll need to install necessary plugins for Maven, SonarQube, Docker, and other integrations.
 
 Configure Jenkins job: Create a Jenkins job that listens for changes in the Git repository (using webhooks or periodic polling). Configure the job to pull the code, build and test with Maven, and then execute static code analysis with SonarQube.
 
